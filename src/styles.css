@@ -5,7 +5,7 @@
   --clr-accent: #3b4be6;
   --clr-accent-dark: #3544cf;
   --clr-accent-darker: #2935a1;
-  --clr-accent-light: #7681ee;
+  --clr-accent-light: #d8dbfa;
   --clr-accent-lighter: #ebedfd;
 
   --clr-error: #ee6055;
@@ -29,6 +29,10 @@ h1 {
   font-family: "Inter Tight", -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
     "Segoe UI Symbol";
+}
+
+button {
+  font-size: 12px;
 }
 
 button:not(:disabled) {
@@ -86,7 +90,7 @@ button:not(:disabled) {
 .btn-fill,
 .btn-outlined {
   border: none;
-  padding: 0.5em 1em;
+  padding: 0.25em 1em;
   border-radius: 50px;
   transition-property: background-color, color, border;
   transition-duration: 150ms;
@@ -122,7 +126,15 @@ button:not(:disabled) {
   background-color: var(--clr-accent-lighter);
 }
 
+.btn-outlined:active {
+  background-color: var(--clr-accent-light);
+}
+
 @media screen and (min-width: 640px) {
+  button {
+    font-size: 14px;
+  }
+
   .container {
     width: 80%;
   }
@@ -150,6 +162,10 @@ button:not(:disabled) {
 }
 
 @media screen and (min-width: 768px) {
+  button {
+    font-size: 16px;
+  }
+
   .page-title {
     font-size: 24px;
   }
