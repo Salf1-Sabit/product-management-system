@@ -7,8 +7,10 @@ export class ProductService {
   products: Product[] = [];
 
   constructor() {
-    const savedProducts = localStorage.getItem(this.localStorageKey);
-    this.products = savedProducts ? JSON.parse(savedProducts) : [];
+    if (this.isLocalStorageAvailable()) {
+      const savedProducts = localStorage.getItem(this.localStorageKey);
+      this.products = savedProducts ? JSON.parse(savedProducts) : [];
+    }
   }
 
   getProducts(): Product[] {
@@ -37,6 +39,12 @@ export class ProductService {
   }
 
   updateLocalStorage() {
-    localStorage.setItem(this.localStorageKey, JSON.stringify(this.products));
+    if (this.isLocalStorageAvailable()) {
+      localStorage.setItem(this.localStorageKey, JSON.stringify(this.products));
+    }
+  }
+
+  private isLocalStorageAvailable(): boolean {
+    return typeof window !== 'undefined' && typeof localStorage !== 'undefined';
   }
 }

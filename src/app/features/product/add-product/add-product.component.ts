@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { NgIf, NgFor } from '@angular/common';
 
+import { ProductService } from '../../../shared/services/product.service';
 import { Product } from '../../../shared/models/Product';
 
 @Component({
@@ -31,6 +32,8 @@ export class AddProductComponent {
     ]),
   });
 
+  constructor(private productService: ProductService) {}
+
   get f() {
     return this.productForm.controls;
   }
@@ -48,6 +51,7 @@ export class AddProductComponent {
       };
 
       console.log('Product added:', newProduct);
+      this.productService.addProduct(newProduct);
     }
   }
 

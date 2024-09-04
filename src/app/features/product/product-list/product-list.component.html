@@ -1,1 +1,13 @@
-<p>product-list works!</p>
+<div *ngIf="products.length > 0">
+  <div *ngFor="let product of products">
+    <p>{{ product.name }}</p>
+    <p>{{ product.description }}</p>
+    <p>{{ product.category }}</p>
+    <p>{{ product.quantity }}</p>
+    <p>{{ product.price }}</p>
+    <p>{{ product.createDate }}</p>
+  </div>
+</div>
+<div *ngIf="products.length === 0">
+  <p>No products available.</p>
+</div>
