@@ -38,6 +38,25 @@ export class ProductService {
     this.updateLocalStorage();
   }
 
+  getTotalPrice(): number {
+    const totalPrice = this.products.reduce(
+      (total, product) => total + product.price * product.quantity,
+      0
+    );
+
+    return totalPrice;
+  }
+
+  searchProducts(query: string): Product[] {
+    const filteredProducts = this.products.filter(
+      (product) =>
+        product.name.toLowerCase().includes(query.toLowerCase()) ||
+        product.category?.toLowerCase().includes(query.toLowerCase())
+    );
+
+    return filteredProducts;
+  }
+
   updateLocalStorage() {
     if (this.isLocalStorageAvailable()) {
       localStorage.setItem(this.localStorageKey, JSON.stringify(this.products));
