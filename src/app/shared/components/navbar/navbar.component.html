@@ -1,8 +1,25 @@
 <header>
-  <nav>
+  <nav class="container">
+    <h1 class="brand-logo desktop-view">Product Management System</h1>
+    <h1 class="brand-logo mobile-view">PMS</h1>
+
     <ul>
-      <li><a routerLink="/">Add Product</a></li>
-      <li><a routerLink="/product-list">Product List</a></li>
+      <li>
+        <a
+          routerLink="/"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >Add Product</a
+        >
+      </li>
+      <li>
+        <a
+          routerLink="/product-list"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >Product List</a
+        >
+      </li>
     </ul>
   </nav>
 </header>
