@@ -8,117 +8,126 @@
     class="add-product-form"
   >
     <div class="form-inputs-container">
-      <div>
-        <div class="label-input-container">
-          <label class="form-label" for="name">Product Name</label>
-          <input
-            class="form-input"
-            type="text"
-            id="name"
-            formControlName="name"
-            placeholder="e.g., Wireless Bluetooth Headphones"
-          />
+      <div class="col">
+        <div>
+          <div class="label-input-container">
+            <label class="form-label" for="name">Product Name</label>
+            <input
+              class="form-input"
+              type="text"
+              id="name"
+              formControlName="name"
+              placeholder="e.g., Wireless Bluetooth Headphones"
+            />
+          </div>
+
+          <div
+            *ngIf="f.name.invalid && f.name.touched"
+            class="form-input-error"
+          >
+            <small *ngIf="f.name.errors?.['required']">Name is required.</small>
+          </div>
         </div>
 
-        <div *ngIf="f.name.invalid && f.name.touched" class="form-input-error">
-          <small *ngIf="f.name.errors?.['required']">Name is required.</small>
+        <div>
+          <div class="label-input-container">
+            <label class="form-label" for="description">Description</label>
+            <textarea
+              class="form-input description-textarea"
+              type="text"
+              id="description"
+              formControlName="description"
+              placeholder="e.g., High-quality wireless headphones with noise cancellation"
+            ></textarea>
+          </div>
+
+          <div
+            *ngIf="f.description.invalid && f.description.touched"
+            class="form-input-error"
+          >
+            <small *ngIf="f.description.errors?.['required']"
+              >Description is required.</small
+            >
+          </div>
         </div>
       </div>
 
-      <div>
-        <div class="label-input-container">
-          <label class="form-label" for="description">Description</label>
-          <input
-            class="form-input"
-            type="text"
-            id="description"
-            formControlName="description"
-            placeholder="e.g., High-quality wireless headphones with noise cancellation"
-          />
+      <div class="col">
+        <div>
+          <div class="label-input-container">
+            <label class="form-label" for="category">Category</label>
+            <input class="form-input" type="text" id="category" />
+          </div>
         </div>
 
-        <div
-          *ngIf="f.description.invalid && f.description.touched"
-          class="form-input-error"
-        >
-          <small *ngIf="f.description.errors?.['required']"
-            >Description is required.</small
+        <div>
+          <div class="label-input-container">
+            <label class="form-label" for="quantity">Quantity</label>
+            <input
+              class="form-input"
+              type="number"
+              id="quantity"
+              formControlName="quantity"
+              min="1"
+            />
+          </div>
+
+          <div
+            *ngIf="f.quantity.invalid && f.quantity.touched"
+            class="form-input-error"
           >
-        </div>
-      </div>
-
-      <div>
-        <div class="label-input-container">
-          <label class="form-label" for="category">Category</label>
-          <input class="form-input" type="text" id="category" />
-        </div>
-      </div>
-
-      <div>
-        <div class="label-input-container">
-          <label class="form-label" for="quantity">Quantity</label>
-          <input
-            class="form-input"
-            type="number"
-            id="quantity"
-            formControlName="quantity"
-            min="1"
-          />
+            <small *ngIf="f.quantity.errors?.['required']"
+              >Quantity is required.</small
+            >
+            <small *ngIf="f.quantity.errors?.['min']"
+              >Quantity must be at least 1.</small
+            >
+          </div>
         </div>
 
-        <div
-          *ngIf="f.quantity.invalid && f.quantity.touched"
-          class="form-input-error"
-        >
-          <small *ngIf="f.quantity.errors?.['required']"
-            >Quantity is required.</small
+        <div>
+          <div class="label-input-container">
+            <label class="form-label" for="price">Price</label>
+            <input
+              class="form-input"
+              type="text"
+              id="price"
+              formControlName="price"
+            />
+          </div>
+
+          <div
+            *ngIf="f.price.invalid && f.price.touched"
+            class="form-input-error"
           >
-          <small *ngIf="f.quantity.errors?.['min']"
-            >Quantity must be at least 1.</small
+            <small *ngIf="f.price.errors?.['required']"
+              >Price is required.</small
+            >
+            <small *ngIf="f.price.errors?.['pattern']"
+              >Invalid price format. Example: 10.99</small
+            >
+          </div>
+        </div>
+
+        <div>
+          <div class="label-input-container">
+            <label class="form-label" for="createDate">Create Date</label>
+            <input
+              class="form-input"
+              type="date"
+              id="createDate"
+              formControlName="createDate"
+            />
+          </div>
+
+          <div
+            *ngIf="f.createDate.invalid && f.createDate.touched"
+            class="form-input-error"
           >
-        </div>
-      </div>
-
-      <div>
-        <div class="label-input-container">
-          <label class="form-label" for="price">Price</label>
-          <input
-            class="form-input"
-            type="text"
-            id="price"
-            formControlName="price"
-          />
-        </div>
-
-        <div
-          *ngIf="f.price.invalid && f.price.touched"
-          class="form-input-error"
-        >
-          <small *ngIf="f.price.errors?.['required']">Price is required.</small>
-          <small *ngIf="f.price.errors?.['pattern']"
-            >Invalid price format. Example: 10.99</small
-          >
-        </div>
-      </div>
-
-      <div>
-        <div class="label-input-container">
-          <label class="form-label" for="createDate">Create Date</label>
-          <input
-            class="form-input"
-            type="date"
-            id="createDate"
-            formControlName="createDate"
-          />
-        </div>
-
-        <div
-          *ngIf="f.createDate.invalid && f.createDate.touched"
-          class="form-input-error"
-        >
-          <small *ngIf="f.createDate.errors?.['required']"
-            >Create Date is required.</small
-          >
+            <small *ngIf="f.createDate.errors?.['required']"
+              >Create Date is required.</small
+            >
+          </div>
         </div>
       </div>
     </div>

@@ -85,6 +85,7 @@ button:not(:disabled) {
 .form-input-error {
   color: var(--clr-error);
   font-size: 12px;
+  margin-top: 0.15em;
 }
 
 .btn-fill,
@@ -172,6 +173,10 @@ button:not(:disabled) {
 
   .page-description {
     font-size: 14px;
+  }
+
+  .form-input-error {
+    font-size: 16px;
   }
 }
 
