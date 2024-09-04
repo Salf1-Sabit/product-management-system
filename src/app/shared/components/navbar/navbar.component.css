@@ -33,8 +33,7 @@ ul li a {
   border-radius: 50px;
   transition: background-color;
   transition-duration: 300ms;
-  font-weight: bold;
-  color: rgba(0, 0, 0, 0.5);
+  color: rgba(0, 0, 0, 0.7);
 }
 
 .active {
