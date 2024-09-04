@@ -21,6 +21,17 @@ import { ToastComponent } from '../../../shared/components/toast/toast.component
 })
 export class AddProductComponent {
   @ViewChild('toast') toast!: ToastComponent;
+  categories: string[] = [
+    'Electronics',
+    'Home Decor',
+    'Fashion',
+    'Beauty Products',
+    'Books',
+    'Sports',
+    'Toys',
+    'Automotive',
+    'Health',
+  ];
 
   productForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
@@ -63,6 +74,10 @@ export class AddProductComponent {
 
   onClear() {
     this.productForm.reset();
+  }
+
+  handleNewCategoryAdded(newCategory: string) {
+    console.log('New category added:', newCategory);
   }
 
   generateUniqueId(): string {

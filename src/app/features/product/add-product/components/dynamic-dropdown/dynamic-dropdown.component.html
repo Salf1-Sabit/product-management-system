@@ -1,0 +1,25 @@
+<div class="dropdown-container">
+  <select [formControl]="formControl" class="form-input category-select">
+    <option value="" disabled>Select a category</option>
+    <option *ngFor="let category of existingCategories" [value]="category">
+      {{ category }}
+    </option>
+    <option (click)="showAddInput = true">+ Add new...</option>
+  </select>
+
+  <div *ngIf="showAddInput" class="add-category-container">
+    <input
+      type="text"
+      [formControl]="newCategoryControl"
+      placeholder="Enter new category"
+      class="form-input"
+    />
+
+    <div class="btn-group">
+      <button (click)="addNewCategory()" class="btn-fill">Add</button>
+      <button (click)="showAddInput = false" class="btn-outlined">
+        Cancel
+      </button>
+    </div>
+  </div>
+</div>
