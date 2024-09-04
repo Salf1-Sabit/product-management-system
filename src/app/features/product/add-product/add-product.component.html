@@ -1,1 +1,64 @@
-<p>add-product works!</p>
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="name">Name</label>
+    <input type="text" id="name" formControlName="name" />
+
+    <div *ngIf="f.name.invalid && f.name.touched">
+      <small *ngIf="f.name.errors?.['required']">Name is required.</small>
+    </div>
+  </div>
+
+  <div>
+    <label for="description">Description</label>
+    <input type="text" id="description" formControlName="description" />
+
+    <div *ngIf="f.description.invalid && f.description.touched">
+      <small *ngIf="f.description.errors?.['required']"
+        >Description is required.</small
+      >
+    </div>
+  </div>
+
+  <div>
+    <label for="category">Category</label> <input type="text" id="category" />
+  </div>
+
+  <div>
+    <label for="quantity">Quantity</label>
+    <input type="number" id="quantity" formControlName="quantity" min="1" />
+
+    <div *ngIf="f.quantity.invalid && f.quantity.touched">
+      <small *ngIf="f.quantity.errors?.['required']"
+        >Quantity is required.</small
+      >
+      <small *ngIf="f.quantity.errors?.['min']"
+        >Quantity must be at least 1.</small
+      >
+    </div>
+  </div>
+
+  <div>
+    <label for="price">Price</label>
+    <input type="text" id="price" formControlName="price" />
+
+    <div *ngIf="f.price.invalid && f.price.touched">
+      <small *ngIf="f.price.errors?.['required']">Price is required.</small>
+      <small *ngIf="f.price.errors?.['pattern']"
+        >Invalid price format. Example: 10.99</small
+      >
+    </div>
+  </div>
+
+  <div>
+    <label for="createDate">Create Date</label>
+    <input type="date" id="createDate" formControlName="createDate" />
+
+    <div *ngIf="f.createDate.invalid && f.createDate.touched">
+      <small *ngIf="f.createDate.errors?.['required']"
+        >Create Date is required.</small
+      >
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="!productForm.valid">Submit</button>
+</form>
