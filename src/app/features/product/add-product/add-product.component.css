@@ -1,0 +1,24 @@
+.add-product-form-container {
+  padding-top: 1rem;
+}
+
+.add-product-form {
+  background-color: #fff;
+  margin-top: 1em;
+  padding: 1em;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.form-inputs-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.btn-group {
+  margin-top: 1.5em;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5em;
+}

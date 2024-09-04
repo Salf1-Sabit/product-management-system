@@ -50,9 +50,13 @@ export class AddProductComponent {
         createDate: this.f.createDate.value ?? this.formatDate(new Date()),
       };
 
-      console.log('Product added:', newProduct);
       this.productService.addProduct(newProduct);
+      this.productForm.reset();
     }
+  }
+
+  onClear() {
+    this.productForm.reset();
   }
 
   generateUniqueId(): string {
