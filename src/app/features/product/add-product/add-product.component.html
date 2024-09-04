@@ -29,7 +29,7 @@
               class="form-input-error"
             >
               <small *ngIf="f.name.errors?.['required']"
-                >Name is required.</small
+                >Product name is required.</small
               >
             </div>
           </div>
@@ -51,7 +51,7 @@
               class="form-input-error"
             >
               <small *ngIf="f.description.errors?.['required']"
-                >Description is required.</small
+                >Product description is required.</small
               >
             </div>
           </div>
@@ -61,7 +61,33 @@
           <div>
             <div class="label-input-container">
               <label class="form-label" for="category">Category</label>
-              <input class="form-input" type="text" id="category" />
+
+              <select
+                name="category"
+                id="category"
+                class="form-input category-select"
+                formControlName="category"
+              >
+                <option value="" disabled selected>Select a category</option>
+                <option value="Electronics">Electronics</option>
+                <option value="Home Decor">Home Decor</option>
+                <option value="Fashion">Apparel</option>
+                <option value="Beauty Products">Beauty Products</option>
+                <option value="Books">Books</option>
+                <option value="Sports">Sports</option>
+                <option value="Toys">Toys</option>
+                <option value="Automotive">Automotive</option>
+                <option value="Health">Health</option>
+              </select>
+            </div>
+
+            <div
+              *ngIf="f.category.invalid && f.category.touched"
+              class="form-input-error"
+            >
+              <small *ngIf="f.category.errors?.['required']"
+                >Product category is required.</small
+              >
             </div>
           </div>
 
@@ -149,4 +175,6 @@
       </div>
     </form>
   </main>
+
+  <app-toast #toast></app-toast>
 </section>

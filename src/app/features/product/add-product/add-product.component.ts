@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import {
   FormGroup,
   FormControl,
@@ -10,18 +10,22 @@ import { NgIf, NgFor } from '@angular/common';
 import { ProductService } from '../../../shared/services/product.service';
 import { Product } from '../../../shared/models/Product';
 
+import { ToastComponent } from '../../../shared/components/toast/toast.component';
+
 @Component({
   selector: 'app-add-product',
   standalone: true,
-  imports: [NgIf, NgFor, ReactiveFormsModule],
+  imports: [NgIf, NgFor, ReactiveFormsModule, ToastComponent],
   templateUrl: './add-product.component.html',
   styleUrl: './add-product.component.css',
 })
 export class AddProductComponent {
+  @ViewChild('toast') toast!: ToastComponent;
+
   productForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
-    category: new FormControl(''),
+    category: new FormControl('', [Validators.required]),
     quantity: new FormControl('', [Validators.required, Validators.min(1)]),
     price: new FormControl('', [
       Validators.required,
@@ -52,6 +56,8 @@ export class AddProductComponent {
 
       this.productService.addProduct(newProduct);
       this.productForm.reset();
+
+      this.toast.showToast('Product added successfully!', 'success');
     }
   }
 

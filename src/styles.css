@@ -72,6 +72,7 @@ button:not(:disabled) {
   padding: 0.5em 0.8em;
   border-radius: 10px;
   outline: none;
+  background-color: #fff;
   border: 1px solid rgba(0, 0, 0, 0.1);
   transition-property: border, background-color;
   transition-duration: 200ms;
@@ -91,7 +92,7 @@ button:not(:disabled) {
 .btn-fill,
 .btn-outlined {
   border: none;
-  padding: 0.25em 1em;
+  padding: 0.175em 1em;
   border-radius: 50px;
   transition-property: background-color, color, border;
   transition-duration: 150ms;
@@ -119,7 +120,6 @@ button:not(:disabled) {
 .btn-outlined {
   background-color: #fff;
   color: var(--clr-accent);
-  font-weight: 600;
   border: 1px solid var(--clr-accent);
 }
 
