@@ -24,15 +24,24 @@ export class AddProductComponent {
       Validators.required,
       Validators.pattern('^[0-9]+(\\.[0-9]{1,2})?$'),
     ]),
-    createDate: new FormControl('', [Validators.required]),
+    createDate: new FormControl(this.formatDate(new Date()), [
+      Validators.required,
+    ]),
   });
 
-  // Helper method to get form controls for easier access in the template
   get f() {
     return this.productForm.controls;
   }
 
   onSubmit() {
     console.log(this.productForm.value);
+  }
+
+  formatDate(date: Date): string {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+
+    return `${year}-${month}-${day}`;
   }
 }
