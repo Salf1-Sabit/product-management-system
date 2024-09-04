@@ -57,6 +57,11 @@ export class ProductService {
     return filteredProducts;
   }
 
+  countProductsByCategory(category: string): number {
+    return this.products.filter((product) => product.category === category)
+      .length;
+  }
+
   updateLocalStorage() {
     if (this.isLocalStorageAvailable()) {
       localStorage.setItem(this.localStorageKey, JSON.stringify(this.products));
