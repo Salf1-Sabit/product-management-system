@@ -1,11 +1,12 @@
 import { NgFor, NgIf, CurrencyPipe, DatePipe } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
-
-import { NgxPaginationModule } from 'ngx-pagination';
-import { Product } from '../../../shared/models/Product';
-import { ProductService } from '../../../shared/services/product.service';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+
+import { ProductService } from '../../../shared/services/product.service';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { ToastComponent } from '../../../shared/components/toast/toast.component';
+import { Product } from '../../../shared/models/Product';
 
 @Component({
   selector: 'app-product-list',
@@ -28,7 +29,8 @@ export class ProductListComponent {
   constructor(
     private productService: ProductService,
     private currencyPipe: CurrencyPipe,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -56,6 +58,10 @@ export class ProductListComponent {
     this.productService.deleteProduct(productId);
     this.loadProducts();
     this.toast.showToast('Product removed successfully!', 'success');
+  }
+
+  onEdit(product: Product): void {
+    this.router.navigate(['/'], { state: { product } });
   }
 
   formatCurrency(value: number): string {

@@ -93,7 +93,7 @@ button:not(:disabled) {
 .btn-fill,
 .btn-outlined {
   border: none;
-  padding: 0.175em 1em;
+  padding: 0.35em 1em;
   border-radius: 50px;
   transition-property: background-color, color, border;
   transition-duration: 150ms;

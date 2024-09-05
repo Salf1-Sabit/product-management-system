@@ -170,7 +170,7 @@
           Clear
         </button>
         <button type="submit" [disabled]="!productForm.valid" class="btn-fill">
-          Add Product
+          {{ productToEdit ? "Update" : "Add" }} Product
         </button>
       </div>
     </form>

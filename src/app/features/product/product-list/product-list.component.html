@@ -42,7 +42,7 @@
           <td>{{ formatDate(product.createDate) }}</td>
           <td>
             <div class="icon-group">
-              <div class="icon-outlined">
+              <div class="icon-outlined" (click)="onEdit(product)">
                 <i class="ri-pencil-line"></i>
               </div>
 
