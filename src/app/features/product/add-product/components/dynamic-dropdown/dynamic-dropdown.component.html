@@ -16,9 +16,11 @@
     />
 
     <div class="btn-group">
-      <button (click)="addNewCategory()" class="btn-fill">Add</button>
-      <button (click)="showAddInput = false" class="btn-outlined">
+      <button type="button" (click)="showAddInput = false" class="btn-outlined">
         Cancel
+      </button>
+      <button type="button" (click)="addNewCategory()" class="btn-fill">
+        Add Category
       </button>
     </div>
   </div>

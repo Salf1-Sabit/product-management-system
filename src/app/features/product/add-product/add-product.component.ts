@@ -12,11 +12,18 @@ import { ProductService } from '../../../shared/services/product.service';
 
 import { Product } from '../../../shared/models/Product';
 import { ToastComponent } from '../../../shared/components/toast/toast.component';
+import { DynamicDropdownComponent } from './components/dynamic-dropdown/dynamic-dropdown.component';
 
 @Component({
   selector: 'app-add-product',
   standalone: true,
-  imports: [NgIf, NgFor, ReactiveFormsModule, ToastComponent],
+  imports: [
+    NgIf,
+    NgFor,
+    ReactiveFormsModule,
+    ToastComponent,
+    DynamicDropdownComponent,
+  ],
   templateUrl: './add-product.component.html',
   styleUrl: './add-product.component.css',
 })
@@ -58,6 +65,8 @@ export class AddProductComponent {
   }
 
   ngOnInit() {
+    this.loadCategoriesFromLocalStorage();
+
     if (this.productToEdit) {
       this.productForm.patchValue({
         name: this.productToEdit.name,
@@ -131,7 +140,43 @@ export class AddProductComponent {
   }
 
   handleNewCategoryAdded(newCategory: string) {
-    console.log('New category added:', newCategory);
+    this.productForm.controls['category'].setValue(newCategory);
+
+    if (this.categories.includes(newCategory)) {
+      this.toast.showToast('Category already exists!', 'error');
+      return;
+    }
+
+    this.categories.push(newCategory);
+    this.updateCategoriesInLocalStorage();
+    this.toast.showToast('New category added successfully!', 'success');
+  }
+
+  loadCategoriesFromLocalStorage() {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      const storedCategories = localStorage.getItem('categories');
+      if (storedCategories) {
+        this.categories = JSON.parse(storedCategories);
+      } else {
+        this.categories = [
+          'Electronics',
+          'Home Decor',
+          'Fashion',
+          'Beauty Products',
+          'Books',
+          'Sports',
+          'Toys',
+          'Automotive',
+          'Health',
+        ];
+      }
+    }
+  }
+
+  updateCategoriesInLocalStorage() {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      localStorage.setItem('categories', JSON.stringify(this.categories));
+    }
   }
 
   generateUniqueId(): string {

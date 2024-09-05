@@ -62,23 +62,11 @@
             <div class="label-input-container">
               <label class="form-label" for="category">Category</label>
 
-              <select
-                name="category"
-                id="category"
-                class="form-input category-select"
-                formControlName="category"
-              >
-                <option value="" disabled selected>Select a category</option>
-                <option value="Electronics">Electronics</option>
-                <option value="Home Decor">Home Decor</option>
-                <option value="Fashion">Apparel</option>
-                <option value="Beauty Products">Beauty Products</option>
-                <option value="Books">Books</option>
-                <option value="Sports">Sports</option>
-                <option value="Toys">Toys</option>
-                <option value="Automotive">Automotive</option>
-                <option value="Health">Health</option>
-              </select>
+              <app-dynamic-dropdown
+                [formControl]="productForm.controls['category']"
+                [existingCategories]="categories"
+                (newCategoryAdded)="handleNewCategoryAdded($event)"
+              ></app-dynamic-dropdown>
             </div>
 
             <div
