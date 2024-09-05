@@ -46,7 +46,7 @@
                 <i class="ri-pencil-line"></i>
               </div>
 
-              <div class="icon-outlined">
+              <div class="icon-outlined" (click)="onDelete(product.id)">
                 <i class="ri-delete-bin-6-line"></i>
               </div>
             </div>
@@ -79,4 +79,6 @@
       <p>No products available.</p>
     </div>
   </main>
+
+  <app-toast #toast></app-toast>
 </section>
