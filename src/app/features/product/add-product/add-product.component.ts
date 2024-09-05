@@ -58,13 +58,6 @@ export class AddProductComponent {
       const selectedCategory = this.f.category.value ?? '';
       const count =
         this.productService.countProductsByCategory(selectedCategory);
-
-      console.log(
-        '🚀 ~ AddProductComponent ~ onSubmit ~ selectedCategory:',
-        selectedCategory
-      );
-      console.log('🚀 ~ AddProductComponent ~ onSubmit ~ count:', count);
-
       if (count >= 10) {
         this.toast.showToast(
           'Cannot add more than 10 products in the same category.',

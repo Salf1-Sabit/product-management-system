@@ -1,25 +1,72 @@
-<input
-  type="text"
-  [(ngModel)]="searchQuery"
-  placeholder="Search products.."
-  (input)="onSearch()"
-/>
+<section class="container product-list-container">
+  <header>
+    <h1 class="page-title">Products</h1>
+    <p class="page-description">Manage and view all your products</p>
+  </header>
 
-<div *ngIf="products.length > 0">
-  <div *ngFor="let product of products">
-    <p>{{ product.name }}</p>
-    <p>{{ product.description }}</p>
-    <p>{{ product.category }}</p>
-    <p>{{ product.quantity }}</p>
-    <p>{{ formatCurrency(product.price) }}</p>
-    <p>{{ formatDate(product.createDate) }}</p>
-  </div>
+  <main>
+    <input
+      type="text"
+      [(ngModel)]="searchQuery"
+      placeholder="Search products by name or category..."
+      (input)="onSearch()"
+      class="form-input search-bar"
+    />
 
-  <p>
-    TotalPrice:
-    {{ formatCurrency(totalPrice) }}
-  </p>
-</div>
-<div *ngIf="products.length === 0">
-  <p>No products available.</p>
-</div>
+    <div class="product-table-container">
+      <table *ngIf="products.length > 0" class="products-table">
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Category</th>
+          <th>Quantity</th>
+          <th>Unit Price</th>
+          <th>Total</th>
+          <th>Create Date</th>
+          <th>Actions</th>
+        </tr>
+
+        <tr
+          *ngFor="
+            let product of products
+              | paginate
+                : { itemsPerPage: itemsPerPage, currentPage: currentPage }
+          "
+        >
+          <td>{{ product.name }}</td>
+          <td>{{ product.description }}</td>
+          <td>{{ product.category }}</td>
+          <td>{{ product.quantity }}</td>
+          <td>{{ formatCurrency(product.price) }}</td>
+          <td>{{ formatCurrency(product.price * product.quantity) }}</td>
+          <td>{{ formatDate(product.createDate) }}</td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <th>Total Price</th>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>{{ formatCurrency(totalPrice) }}</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="pagination">
+      <pagination-controls
+        (pageChange)="currentPage = $event"
+        [maxSize]="5"
+        [directionLinks]="true"
+        [autoHide]="true"
+      ></pagination-controls>
+    </div>
+
+    <div *ngIf="products.length === 0">
+      <p>No products available.</p>
+    </div>
+  </main>
+</section>

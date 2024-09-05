@@ -1,6 +1,7 @@
 import { NgFor, NgIf, CurrencyPipe, DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
 
+import { NgxPaginationModule } from 'ngx-pagination';
 import { Product } from '../../../shared/models/Product';
 import { ProductService } from '../../../shared/services/product.service';
 import { FormsModule } from '@angular/forms';
@@ -8,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [NgIf, NgFor, FormsModule],
+  imports: [NgIf, NgFor, FormsModule, NgxPaginationModule],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css',
   providers: [CurrencyPipe, DatePipe],
@@ -17,6 +18,9 @@ export class ProductListComponent {
   products: Product[] = [];
   searchQuery: string = '';
   totalPrice: number = 0;
+
+  currentPage: number = 1;
+  itemsPerPage: number = 10;
 
   constructor(
     private productService: ProductService,
