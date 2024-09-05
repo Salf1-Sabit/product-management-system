@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import {
   FormGroup,
   FormControl,
@@ -10,18 +10,33 @@ import { NgIf, NgFor } from '@angular/common';
 import { ProductService } from '../../../shared/services/product.service';
 import { Product } from '../../../shared/models/Product';
 
+import { ToastComponent } from '../../../shared/components/toast/toast.component';
+
 @Component({
   selector: 'app-add-product',
   standalone: true,
-  imports: [NgIf, NgFor, ReactiveFormsModule],
+  imports: [NgIf, NgFor, ReactiveFormsModule, ToastComponent],
   templateUrl: './add-product.component.html',
   styleUrl: './add-product.component.css',
 })
 export class AddProductComponent {
+  @ViewChild('toast') toast!: ToastComponent;
+  categories: string[] = [
+    'Electronics',
+    'Home Decor',
+    'Fashion',
+    'Beauty Products',
+    'Books',
+    'Sports',
+    'Toys',
+    'Automotive',
+    'Health',
+  ];
+
   productForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
-    category: new FormControl(''),
+    category: new FormControl('', [Validators.required]),
     quantity: new FormControl('', [Validators.required, Validators.min(1)]),
     price: new FormControl('', [
       Validators.required,
@@ -40,6 +55,24 @@ export class AddProductComponent {
 
   onSubmit() {
     if (this.productForm.valid) {
+      const selectedCategory = this.f.category.value ?? '';
+      const count =
+        this.productService.countProductsByCategory(selectedCategory);
+
+      console.log(
+        '🚀 ~ AddProductComponent ~ onSubmit ~ selectedCategory:',
+        selectedCategory
+      );
+      console.log('🚀 ~ AddProductComponent ~ onSubmit ~ count:', count);
+
+      if (count >= 10) {
+        this.toast.showToast(
+          'Cannot add more than 10 products in the same category.',
+          'error'
+        );
+        return;
+      }
+
       const newProduct: Product = {
         id: this.generateUniqueId(),
         name: this.f.name.value ?? '',
@@ -50,9 +83,19 @@ export class AddProductComponent {
         createDate: this.f.createDate.value ?? this.formatDate(new Date()),
       };
 
-      console.log('Product added:', newProduct);
       this.productService.addProduct(newProduct);
+      this.productForm.reset();
+
+      this.toast.showToast('Product added successfully!', 'success');
     }
+  }
+
+  onClear() {
+    this.productForm.reset();
+  }
+
+  handleNewCategoryAdded(newCategory: string) {
+    console.log('New category added:', newCategory);
   }
 
   generateUniqueId(): string {

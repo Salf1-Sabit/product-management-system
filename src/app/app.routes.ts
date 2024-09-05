@@ -4,6 +4,10 @@ import { AddProductComponent } from './features/product/add-product/add-product.
 import { ProductListComponent } from './features/product/product-list/product-list.component';
 
 export const routes: Routes = [
-  { path: '', component: AddProductComponent },
-  { path: 'product-list', component: ProductListComponent },
+  { path: '', title: 'Add Product', component: AddProductComponent },
+  {
+    path: 'product-list',
+    title: 'Product List',
+    component: ProductListComponent,
+  },
 ];

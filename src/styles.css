@@ -1,6 +1,14 @@
 :root {
   --clr-bg: #eeeeee;
+  --clr-bg-dark: #d6d6d6;
+
   --clr-accent: #3b4be6;
+  --clr-accent-dark: #3544cf;
+  --clr-accent-darker: #2935a1;
+  --clr-accent-light: #d8dbfa;
+  --clr-accent-lighter: #ebedfd;
+
+  --clr-error: #ee6055;
 }
 
 *,
@@ -23,6 +31,14 @@ h1 {
     "Segoe UI Symbol";
 }
 
+button {
+  font-size: 12px;
+}
+
+button:not(:disabled) {
+  cursor: pointer;
+}
+
 .container {
   max-width: 1200px;
   width: 90%;
@@ -30,19 +46,140 @@ h1 {
 }
 
 .page-title {
+  font-weight: 700;
+  font-size: 18px;
 }
 
-.section-title {
+.page-description {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.label-input-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.25em;
 }
 
 .form-label {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.8);
 }
 
-.card-shadow {
+.form-input {
+  width: 100%;
+  font-size: 12px;
+  padding: 0.5em 0.8em;
+  border-radius: 10px;
+  outline: none;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  transition-property: border, background-color;
+  transition-duration: 200ms;
+}
+
+.form-input:focus {
+  border: 1px solid var(--clr-accent);
+  background-color: var(--clr-accent-lighter);
+}
+
+.form-input-error {
+  color: var(--clr-error);
+  font-size: 12px;
+  margin-top: 0.15em;
+}
+
+.btn-fill,
+.btn-outlined {
+  border: none;
+  padding: 0.175em 1em;
+  border-radius: 50px;
+  transition-property: background-color, color, border;
+  transition-duration: 150ms;
+}
+
+.btn-fill:not(:disabled) {
+  background-color: var(--clr-accent);
+  color: #fff;
+}
+
+.btn-fill:not(:disabled):hover {
+  background-color: var(--clr-accent-dark);
+}
+
+.btn-fill:not(:disabled):active {
+  background-color: var(--clr-accent-darker);
+}
+
+.btn-fill:disabled {
+  background-color: #ccc;
+  color: #999;
+  cursor: not-allowed;
+}
+
+.btn-outlined {
+  background-color: #fff;
+  color: var(--clr-accent);
+  border: 1px solid var(--clr-accent);
+}
+
+.btn-outlined:hover {
+  background-color: var(--clr-accent-lighter);
+}
+
+.btn-outlined:active {
+  background-color: var(--clr-accent-light);
 }
 
 @media screen and (min-width: 640px) {
+  button {
+    font-size: 14px;
+  }
+
   .container {
     width: 80%;
   }
+
+  .page-title {
+    font-size: 20px;
+  }
+
+  .page-description {
+    font-size: 12px;
+  }
+
+  .label-input-container {
+    gap: 0.5em;
+  }
+
+  .form-label,
+  .form-input {
+    font-size: 14px;
+  }
+
+  .form-input-error {
+    font-size: 14px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  button {
+    font-size: 16px;
+  }
+
+  .page-title {
+    font-size: 24px;
+  }
+
+  .page-description {
+    font-size: 14px;
+  }
+
+  .form-input-error {
+    font-size: 16px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
 }
