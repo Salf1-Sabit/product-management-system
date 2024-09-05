@@ -87,8 +87,12 @@ export class AddProductComponent {
           price: parseFloat(this.f.price.value as string),
           createDate: this.f.createDate.value ?? this.productToEdit.createDate,
         };
+
         this.productService.editProduct(this.productToEdit.id, updatedProduct);
         this.toast.showToast('Product updated successfully!', 'success');
+
+        this.productForm.reset();
+        this.productToEdit = undefined;
 
         return;
       }
