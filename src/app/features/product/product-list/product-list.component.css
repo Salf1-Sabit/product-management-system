@@ -39,10 +39,6 @@ td {
   font-size: 12px;
 }
 
-.ngx-pagination ul li a {
-  background-color: red !important;
-}
-
 @media screen and (min-width: 640px) {
   .products-table,
   .pagination {

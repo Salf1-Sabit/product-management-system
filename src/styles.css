@@ -132,6 +132,11 @@ button:not(:disabled) {
   background-color: var(--clr-accent-light);
 }
 
+.ngx-pagination li.current {
+  border-radius: 5px;
+  background-color: var(--clr-accent-dark) !important;
+}
+
 @media screen and (min-width: 640px) {
   button {
     font-size: 14px;
