@@ -1,7 +1,7 @@
 <section class="container add-product-form-container">
   <header>
     <h1 class="page-title">Add Product</h1>
-    <p class="page-description">Add your products for your customers</p>
+    <p class="page-description">Add new products to your inventory</p>
   </header>
 
   <main>
@@ -170,7 +170,7 @@
           Clear
         </button>
         <button type="submit" [disabled]="!productForm.valid" class="btn-fill">
-          Add Product
+          {{ productToEdit ? "Update" : "Add" }} Product
         </button>
       </div>
     </form>

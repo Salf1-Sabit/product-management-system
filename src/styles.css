@@ -93,7 +93,7 @@ button:not(:disabled) {
 .btn-fill,
 .btn-outlined {
   border: none;
-  padding: 0.175em 1em;
+  padding: 0.35em 1em;
   border-radius: 50px;
   transition-property: background-color, color, border;
   transition-duration: 150ms;
@@ -130,6 +130,27 @@ button:not(:disabled) {
 
 .btn-outlined:active {
   background-color: var(--clr-accent-light);
+}
+
+.icon-outlined {
+  padding: 0.125em 0.25em;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  transition: background-color 150ms;
+  cursor: pointer;
+}
+
+.icon-outlined:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.icon-outlined:active {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.ngx-pagination li.current {
+  border-radius: 5px;
+  background-color: var(--clr-accent-dark) !important;
 }
 
 @media screen and (min-width: 640px) {
