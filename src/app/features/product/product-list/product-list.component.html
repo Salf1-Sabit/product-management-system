@@ -23,7 +23,7 @@
           <th>Unit Price</th>
           <th>Total</th>
           <th>Create Date</th>
-          <th>Actions</th>
+          <th class="action-column">Actions</th>
         </tr>
 
         <tr
@@ -40,7 +40,17 @@
           <td>{{ formatCurrency(product.price) }}</td>
           <td>{{ formatCurrency(product.price * product.quantity) }}</td>
           <td>{{ formatDate(product.createDate) }}</td>
-          <td></td>
+          <td>
+            <div class="icon-group">
+              <div class="icon-outlined">
+                <i class="ri-pencil-line"></i>
+              </div>
+
+              <div class="icon-outlined">
+                <i class="ri-delete-bin-6-line"></i>
+              </div>
+            </div>
+          </td>
         </tr>
 
         <tr>
