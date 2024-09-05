@@ -39,10 +39,9 @@ export class ProductService {
   }
 
   getTotalPrice(): number {
-    const totalPrice = this.products.reduce(
-      (total, product) => total + product.price * product.quantity,
-      0
-    );
+    const totalPrice = this.products.reduce((accumulator, product) => {
+      return accumulator + product.price;
+    }, 0);
 
     return totalPrice;
   }
@@ -58,8 +57,10 @@ export class ProductService {
   }
 
   countProductsByCategory(category: string): number {
-    return this.products.filter((product) => product.category === category)
-      .length;
+    const totalProductInThisCategory = this.products.filter(
+      (product) => product.category?.toLowerCase() === category.toLowerCase()
+    ).length;
+    return totalProductInThisCategory;
   }
 
   updateLocalStorage() {
